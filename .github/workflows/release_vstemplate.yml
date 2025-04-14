@@ -22,7 +22,7 @@ jobs:
         rm -fr ./template/.git
         rm -fr ./template/.github
     - name: Zip template
-      run: pushd ./template && zip -r ../output/HasteSteamWorkshopMod.zip ./* && popd
+      run: pushd ./template && zip -r ../output/HasteSteamWorkshopMod.zip . && popd
     - name: Archive zip artifact
       uses: actions/upload-artifact@v4
       with:
