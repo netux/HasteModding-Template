@@ -72,7 +72,7 @@ jobs:
             const path = require('node:path');
             const fs = require('node:fs/promises');
 
-            const commit = await fs.readFile('vstemplate/commit.txt', 'utf-8').trim();
+            const commit = (await fs.readFile('vstemplate/commit.txt', 'utf-8')).trim();
 
             const release = await github.rest.repos.createRelease({
               ... context.repo,
