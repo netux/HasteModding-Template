@@ -15,7 +15,7 @@ jobs:
         path: ./template
     - name: Convert to Visual Studio template
       run: |
-        cat << EOF > "HasteSteamWorkshopMod.vstemplate"
+        cat << EOF > ./template/HasteSteamWorkshopMod.vstemplate
         <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
           <TemplateData>
             <Name>Haste Steam Workshop Mod</Name>
