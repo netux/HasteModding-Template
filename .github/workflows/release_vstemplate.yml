@@ -20,7 +20,7 @@ jobs:
         path: app/build/outputs/apk/stable/release
   release:
     runs-on: ubuntu-latest
-    needs: [ build ]
+    needs: [ zip ]
     permissions:
       contents: write
     steps:
