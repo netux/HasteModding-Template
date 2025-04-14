@@ -16,7 +16,7 @@ jobs:
     - name: Create output folder
       run: mkdir -p ./output
     - name: Store commit
-      run: pushd ./template && git rev-parse --short HEAD > ./output/commit.txt && popd
+      run: pushd ./template && git rev-parse --short HEAD > ../output/commit.txt && popd
     - name: Convert to Visual Studio template
       run: |
         cat << EOF > ./template/HasteSteamWorkshopMod.vstemplate
