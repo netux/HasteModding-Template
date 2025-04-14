@@ -42,9 +42,8 @@ jobs:
 
             const release = await github.rest.repos.createRelease({
               ... context.repo,
-              name: 'Visual Studio Template (${{ github.ref_name }})',
+              name: `Visual Studio Template (commit ${context.sha})`,
               draft: true,
-              tag_name: '${{ github.ref_name }}',
               generate_release_notes: true
             });
 
