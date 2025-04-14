@@ -84,11 +84,11 @@ jobs:
 
             console.log('Draft release created:', release.data.html_url);
 
-            const data = await fs.readFile('vstemplate/HasteSteamWorkshopTemplate.zip');
+            const data = await fs.readFile('vstemplate/HasteSteamWorkshopMod.zip');
             await github.rest.repos.uploadReleaseAsset({
               ... context.repo,
               release_id: release.data.id,
-              name: 'HasteSteamWorkshopTemplate.zip',
+              name: 'HasteSteamWorkshopMod.zip',
               data
             });
 
