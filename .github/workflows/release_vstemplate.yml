@@ -11,13 +11,17 @@ jobs:
     steps:
     - name: Checkout Git repository
       uses: actions/checkout@v4
+      with:
+        path: ./repository
     - name: Zip repository contents
-      run: zip -r "Haste Steam Workshop Mod.zip" ../
+      run: |
+        mkdir -p ./zipped-vstemplate
+        zip -r "./zipped-vstemplate/Haste Steam Workshop Mod.zip" ./repository
     - name: Archive zip artifact
       uses: actions/upload-artifact@v4
       with:
         name: zipped-vstemplate
-        path: app/build/outputs/apk/stable/release
+        path: ./zipped-vstemplate
   release:
     runs-on: ubuntu-latest
     needs: [ zip ]
