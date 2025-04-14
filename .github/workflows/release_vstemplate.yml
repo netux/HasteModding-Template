@@ -65,7 +65,8 @@ jobs:
           path: vstemplate
       - name: Get short SHA of latest commit
         id: get_git_head_short_sha
-        run: echo "result=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
+        shell: bash
+        run: echo "short_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: Create draft release and upload template zip
         uses: actions/github-script@v7
         with:
@@ -75,9 +76,9 @@ jobs:
 
             const release = await github.rest.repos.createRelease({
               ... context.repo,
-              name: `Visual Studio Template (commit ${{ steps.get_git_head_short_sha.outputs.result }})`,
+              name: `Visual Studio Template (commit ${{ steps.get_git_head_short_sha.outputs.short_sha }})`,
               draft: true,
-              tag_name: `${{ github.ref_name }}-${{ steps.get_git_head_short_sha.outputs.result }}`,
+              tag_name: `${{ github.ref_name }}-${{ steps.get_git_head_short_sha.outputs.short_sha }}`,
               generate_release_notes: true
             });
 
