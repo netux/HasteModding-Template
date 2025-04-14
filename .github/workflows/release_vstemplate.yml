@@ -72,7 +72,7 @@ jobs:
             const path = require('node:path');
             const fs = require('node:fs/promises');
 
-            const commit = await fs.readFile('vstemplate/commit.txt', 'utf-8');
+            const commit = await fs.readFile('vstemplate/commit.txt', 'utf-8').trim();
 
             const release = await github.rest.repos.createRelease({
               ... context.repo,
@@ -84,18 +84,12 @@ jobs:
 
             console.log('Draft release created:', release.data.html_url);
 
-            for await (const filePath of (await glob.create('vstemplate/*')).globGenerator()) {
-              const fileName = path.basename(filePath);
+            const data = await fs.readFile('vstemplate/HasteSteamWorkshopTemplate.zip');
+            await github.rest.repos.uploadReleaseAsset({
+              ... context.repo,
+              release_id: release.data.id,
+              name: 'HasteSteamWorkshopTemplate.zip',
+              data
+            });
 
-              console.log(`Uploading ${fileName} asset to draft release`);
-
-              const data = await fs.readFile(filePath);
-              await github.rest.repos.uploadReleaseAsset({
-                ... context.repo,
-                release_id: release.data.id,
-                name: fileName,
-                data
-              });
-
-              console.log(`${fileName} asset uploaded to draft release`);
-            }
+            console.log(`Template zip asset uploaded to draft release`);
