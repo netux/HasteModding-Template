@@ -12,11 +12,38 @@ jobs:
     - name: Checkout Git repository
       uses: actions/checkout@v4
       with:
-        path: ./repository
+        path: ./template
+    - name: Convert to Visual Studio template
+      run: |
+        cat << EOF > "HasteSteamWorkshopMod.vstemplate"
+        <VSTemplate Version="3.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+          <TemplateData>
+            <Name>Haste Steam Workshop Mod</Name>
+            <ProjectType>CSharp</ProjectType>
+            <ProjectSubType>
+            </ProjectSubType>
+            <SortOrder>1000</SortOrder>
+            <CreateNewFolder>true</CreateNewFolder>
+            <DefaultName>Haste Steam Workshop Mod</DefaultName>
+            <ProvideDefaultName>true</ProvideDefaultName>
+            <LocationField>Enabled</LocationField>
+            <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+            <CreateInPlace>true</CreateInPlace>
+          </TemplateData>
+          <TemplateContent>
+            <Project TargetFileName="Haste$projectname$Mod.csproj" File="HasteExampleMod.csproj" ReplaceParameters="true">
+              <ProjectItem ReplaceParameters="true" TargetFileName=".gitignore">.gitignore</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName=".steam.props">.steam.props</ProjectItem>
+              <ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.cs">Example.cs</ProjectItem>
+              <ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+            </Project>
+          </TemplateContent>
+        </VSTemplate>
+        EOF
     - name: Zip repository contents
       run: |
         mkdir -p ./zipped-vstemplate
-        zip -r "./zipped-vstemplate/Haste Steam Workshop Mod.zip" ./repository
+        zip -r ./zipped-vstemplate/HasteSteamWorkshopMod.zip ./template
     - name: Archive zip artifact
       uses: actions/upload-artifact@v4
       with:
