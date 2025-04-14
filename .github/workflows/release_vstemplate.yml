@@ -43,7 +43,7 @@ jobs:
     - name: Zip repository contents
       run: |
         mkdir -p ./zipped-vstemplate
-        zip -r ./zipped-vstemplate/HasteSteamWorkshopMod.zip ./template
+        zip -r ./zipped-vstemplate/HasteSteamWorkshopMod.zip ./template/*
     - name: Archive zip artifact
       uses: actions/upload-artifact@v4
       with:
