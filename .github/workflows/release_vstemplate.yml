@@ -40,6 +40,9 @@ jobs:
           </TemplateContent>
         </VSTemplate>
         EOF
+
+        rm -fr ./template/.git
+        rm -fr ./template/.github
     - name: Zip repository contents
       run: |
         mkdir -p ./zipped-vstemplate
