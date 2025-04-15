@@ -13,11 +13,11 @@
 		<CreateInPlace>true</CreateInPlace>
 	</TemplateData>
 	<TemplateContent>
-		<Project TargetFileName="Haste\$projectname\$Mod.csproj" File="HasteExampleMod.csproj" ReplaceParameters="true">
-			<ProjectItem ReplaceParameters="true" TargetFileName=".gitignore">.gitignore</ProjectItem>
+		<Project ReplaceParameters="true" TargetFileName="Haste$projectname$Mod.csproj" File="HasteExampleMod.csproj">
+			<ProjectItem ReplaceParameters="false" TargetFileName=".gitignore">.gitignore</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName=".steam.props">.steam.props</ProjectItem>
-			<ProjectItem ReplaceParameters="true" TargetFileName="\$projectname\$.cs">Example.cs</ProjectItem>
 			<ProjectItem ReplaceParameters="false" TargetFileName="LICENSE">LICENSE</ProjectItem>
+			<ProjectItem ReplaceParameters="true" TargetFileName="$projectname$.cs">Example.cs</ProjectItem>
 		</Project>
 	</TemplateContent>
 </VSTemplate>
