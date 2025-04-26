@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using Zorro.Settings;
 
-namespace Haste$safeprojectname$Mod;
+namespace $safeprojectname$;
 
 [LandfallPlugin]
 public class $safeprojectname$
